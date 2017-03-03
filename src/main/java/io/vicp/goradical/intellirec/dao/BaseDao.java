@@ -168,6 +168,15 @@ public interface BaseDao<T> {
 	 */
 	List<T> findEntityByHQL(String hql, Map<String, Object> params);
 
+	/**
+	 * 通过 Query 检索实体对象
+	 *
+	 * @param hql    hql 语句
+	 * @param params Map 对象,通过参数名方式给 hql 语句添加参数,推荐使用
+	 * @param page   要检索数据的页数
+	 * @param rows   每页的数据行数
+	 * @return 实体对象 List
+	 */
 	List<T> findEntityByHQL(String hql, Map<String, Object> params, int page, int rows);
 
 	//单值检索，确保查询结果有且只有一条记录
