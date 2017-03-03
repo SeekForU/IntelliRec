@@ -93,7 +93,7 @@ public interface BaseDao<T> {
 	 *
 	 * @param hql hql 语句
 	 */
-	void batchEntityByHQL(String hql);
+	int batchEntityByHQL(String hql);
 
 	/**
 	 * 通过 Query 批量操作实体对象
@@ -101,7 +101,7 @@ public interface BaseDao<T> {
 	 * @param hql     hql 语句
 	 * @param objects Object对象数组,通过参数位置方式给 hql 语句添加参数,不推荐使用
 	 */
-	void batchEntityByHQL(String hql, Object... objects);
+	int batchEntityByHQL(String hql, Object... objects);
 
 	/**
 	 * 批量操作实体对象
@@ -109,7 +109,7 @@ public interface BaseDao<T> {
 	 * @param hql    hql 语句
 	 * @param params Map 对象,通过参数名方式给 hql 语句添加参数,推荐使用
 	 */
-	void batchEntityByHQL(String hql, Map<String, Object> params);
+	int batchEntityByHQL(String hql, Map<String, Object> params);
 
 	//执行原生SQL语句
 
