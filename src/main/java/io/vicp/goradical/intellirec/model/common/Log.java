@@ -3,6 +3,8 @@ package io.vicp.goradical.intellirec.model.common;
 import java.util.Date;
 
 /**
+ * Created by Kenny on 2017/3/3.
+ *
  * Log
  */
 public class Log {
