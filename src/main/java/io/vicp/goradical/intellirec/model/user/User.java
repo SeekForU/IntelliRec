@@ -4,7 +4,13 @@ import io.vicp.goradical.intellirec.model.BaseEntity;
 
 import java.util.Date;
 
+/**
+ * Created by Kenny on 2017/3/3.
+ *
+ */
 public class User extends BaseEntity {
+	private static final long serialVersionUID = -511556571678240370L;
+
 	private Integer id;
 	private String email;
 	private String name;
@@ -14,12 +20,12 @@ public class User extends BaseEntity {
 
 	@Override
 	public Integer getId() {
-		return null;
+		return id;
 	}
 
 	@Override
 	public void setId(Integer id) {
-
+		this.id = id;
 	}
 
 	public String getEmail() {
@@ -61,4 +67,5 @@ public class User extends BaseEntity {
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
+
 }
