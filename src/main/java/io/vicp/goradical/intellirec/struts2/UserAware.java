@@ -4,6 +4,8 @@ package io.vicp.goradical.intellirec.struts2;
 import io.vicp.goradical.intellirec.model.user.User;
 
 /**
+ * Created by Kenny on 2017/3/3.
+ *
  * 用户关注
  */
 public interface UserAware {
