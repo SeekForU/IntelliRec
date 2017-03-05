@@ -6,8 +6,8 @@
 		</Console>
 	</Appenders>
 	<Loggers>
-		<Logger name="org.springframework.beans.factory" level="TRACE"/>
-		<Root level="INFO">
+		<Logger name="org.springframework.beans.factory" level="DEBUG"/>
+		<Root level="TRACE">
 			<AppenderRef ref="Console"/>
 		</Root>
 	</Loggers>
