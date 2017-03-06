@@ -1,6 +1,5 @@
 package io.vicp.goradical.intellirec.spring4;
 
-import io.vicp.goradical.intellirec.model.user.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.SessionFactory;
@@ -10,10 +9,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.sql.DataSource;
-import java.util.Date;
 
-public class SpringTest {
-	private static final Logger LOG = LogManager.getLogger(SpringTest.class);
+public class TablesGenerateTest {
+	private static final Logger LOG = LogManager.getLogger(TablesGenerateTest.class);
 	private ApplicationContext ac;
 
 	@Before
@@ -30,17 +28,11 @@ public class SpringTest {
 	@Test
 	public void testSessionFactory() {
 		SessionFactory sessionFactory = (SessionFactory) ac.getBean("sessionFactory");
+		LOG.info(sessionFactory);
 	}
 
 	@Test
-	public void testUser() throws Exception {
-		User user = new User();
-		user.setId(1343);
-		user.setName("radical");
-		user.setEmail("499508968@qq.com");
-		user.setNickName("hello world");
-		user.setPassword("root");
-		user.setRegDate(new Date());
-		LOG.info(user);
+	public void tablesGenerator() throws Exception {
+		LOG.info("tables generate successfully.........");
 	}
 }
