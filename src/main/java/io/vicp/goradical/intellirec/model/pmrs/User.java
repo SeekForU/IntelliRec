@@ -1,0 +1,252 @@
+package io.vicp.goradical.intellirec.model.pmrs;
+
+import io.vicp.goradical.intellirec.model.BaseEntity;
+
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * Created by Kenny on 2017/3/4.
+ * 用户实体类
+ */
+@Entity
+@Table(name = "t_user")
+public class User extends BaseEntity{
+	/**
+	 * 代理主键
+	 */
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+
+	private Integer userId;
+	private String userName;
+	private String email;
+	private String password;
+	private Integer userLevel;
+	private String headPhotoSmall;
+	private String headPhotoMiddle;
+	private String headPhotoLarge;
+
+	/**
+	 * 用户的详细信息
+	 *
+	 * User 与 UserDetailInfo 为一对一关系，采用一对一单项关联
+	 */
+	@OneToOne
+	@JoinColumn(name = "user_detail_info_id", foreignKey = @ForeignKey(name = "fk_user_detail_info_id"))
+	private UserDetailInfo userDetailInfo;
+
+	/**
+	 * 用户的收藏记录
+	 * <p>
+	 * User 与 CollectRecord 为一对多关系，采用一对多单项关联
+	 */
+	@OneToMany
+	@JoinColumn(name = "collect_record_id", foreignKey = @ForeignKey(name = "fk_collect_record_id"))
+	private Set<CollectRecord> collectRecords = new HashSet<>();
+	/**
+	 * 用户的评论记录
+	 * <p>
+	 * User 与 CommentRecord 为一对多关系，采用一对多单项关联
+	 */
+	@OneToMany
+	@JoinColumn(name = "comment_record_id", foreignKey = @ForeignKey(name = "fk_comment_record_id"))
+	private Set<CommentRecord> commentRecords = new HashSet<>();
+	/**
+	 * 用户的浏览记录
+	 * <p>
+	 * User 与 GlanceRecord 为一对多关系，采用一对多单项关联
+	 */
+	@OneToMany
+	@JoinColumn(name = "glance_record_id", foreignKey = @ForeignKey(name = "fk_glance_record_id"))
+	private Set<GlanceRecord> glanceRecords = new HashSet<>();
+	/**
+	 * 用户的评分记录
+	 * <p>
+	 * User 与 MarkRecord 为一对多关系，采用一对多单项关联
+	 */
+	@OneToMany
+	@JoinColumn(name = "mark_record_id", foreignKey = @ForeignKey(name = "fk_mark_record_id"))
+	private Set<MarkRecord> markRecords = new HashSet<>();
+	/**
+	 * 用户的播放记录
+	 * <p>
+	 * User 与 PlayRecord 为一对多关系，采用一对多单项关联
+	 */
+	@OneToMany
+	@JoinColumn(name = "collect_record_id", foreignKey = @ForeignKey(name = "fk_play_record_id"))
+	private Set<PlayRecord> playRecords = new HashSet<>();
+	/**
+	 * 用户的点赞记录
+	 * <p>
+	 * User 与 PraiseRecord 为一对多关系，采用一对多单项关联
+	 */
+	@OneToMany
+	@JoinColumn(name = "praise_record_id", foreignKey = @ForeignKey(name = "fk_praise_record_id"))
+	private Set<PraiseRecord> praiseRecords = new HashSet<>();
+	/**
+	 * 用户的搜索记录
+	 * <p>
+	 * User 与 SearchRecord 为一对多关系，采用一对多单项关联
+	 */
+	@OneToMany
+	@JoinColumn(name = "search_record_id", foreignKey = @ForeignKey(name = "fk_search_record_id"))
+	private Set<SearchRecord> searchRecords = new HashSet<>();
+
+	/**
+	 * 用户的推荐
+	 * <p>
+	 * User 与 UserRecommend 为一对多关系，采用一对多单项关联
+	 */
+	@OneToMany
+	@JoinColumn(name = "user_recommend_id", foreignKey = @ForeignKey(name = "fk_user_recommend_id"))
+	private Set<UserRecommend> userRecommends = new HashSet<>();
+
+	@Override
+	public Integer getId() {
+		return id;
+	}
+
+	@Override
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Integer getUserLevel() {
+		return userLevel;
+	}
+
+	public void setUserLevel(Integer userLevel) {
+		this.userLevel = userLevel;
+	}
+
+	public String getHeadPhotoSmall() {
+		return headPhotoSmall;
+	}
+
+	public void setHeadPhotoSmall(String headPhotoSmall) {
+		this.headPhotoSmall = headPhotoSmall;
+	}
+
+	public String getHeadPhotoMiddle() {
+		return headPhotoMiddle;
+	}
+
+	public void setHeadPhotoMiddle(String headPhotoMiddle) {
+		this.headPhotoMiddle = headPhotoMiddle;
+	}
+
+	public String getHeadPhotoLarge() {
+		return headPhotoLarge;
+	}
+
+	public void setHeadPhotoLarge(String headPhotoLarge) {
+		this.headPhotoLarge = headPhotoLarge;
+	}
+
+	public UserDetailInfo getUserDetailInfo() {
+		return userDetailInfo;
+	}
+
+	public void setUserDetailInfo(UserDetailInfo userDetailInfo) {
+		this.userDetailInfo = userDetailInfo;
+	}
+
+	public Set<CollectRecord> getCollectRecords() {
+		return collectRecords;
+	}
+
+	public void setCollectRecords(Set<CollectRecord> collectRecords) {
+		this.collectRecords = collectRecords;
+	}
+
+	public Set<CommentRecord> getCommentRecords() {
+		return commentRecords;
+	}
+
+	public void setCommentRecords(Set<CommentRecord> commentRecords) {
+		this.commentRecords = commentRecords;
+	}
+
+	public Set<GlanceRecord> getGlanceRecords() {
+		return glanceRecords;
+	}
+
+	public void setGlanceRecords(Set<GlanceRecord> glanceRecords) {
+		this.glanceRecords = glanceRecords;
+	}
+
+	public Set<MarkRecord> getMarkRecords() {
+		return markRecords;
+	}
+
+	public void setMarkRecords(Set<MarkRecord> markRecords) {
+		this.markRecords = markRecords;
+	}
+
+	public Set<PlayRecord> getPlayRecords() {
+		return playRecords;
+	}
+
+	public void setPlayRecords(Set<PlayRecord> playRecords) {
+		this.playRecords = playRecords;
+	}
+
+	public Set<PraiseRecord> getPraiseRecords() {
+		return praiseRecords;
+	}
+
+	public void setPraiseRecords(Set<PraiseRecord> praiseRecords) {
+		this.praiseRecords = praiseRecords;
+	}
+
+	public Set<SearchRecord> getSearchRecords() {
+		return searchRecords;
+	}
+
+	public void setSearchRecords(Set<SearchRecord> searchRecords) {
+		this.searchRecords = searchRecords;
+	}
+
+	public Set<UserRecommend> getUserRecommends() {
+		return userRecommends;
+	}
+
+	public void setUserRecommends(Set<UserRecommend> userRecommends) {
+		this.userRecommends = userRecommends;
+	}
+}
