@@ -24,4 +24,28 @@ public class SearchResult {
 	@OneToMany
 	@JoinColumn(name = "search_result_id", foreignKey = @ForeignKey(name = "fk_search_result_id"))
 	private Set<Video> videos = new HashSet<>();
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public SearchRecord getSearchRecord() {
+		return searchRecord;
+	}
+
+	public void setSearchRecord(SearchRecord searchRecord) {
+		this.searchRecord = searchRecord;
+	}
+
+	public Set<Video> getVideos() {
+		return videos;
+	}
+
+	public void setVideos(Set<Video> videos) {
+		this.videos = videos;
+	}
 }
