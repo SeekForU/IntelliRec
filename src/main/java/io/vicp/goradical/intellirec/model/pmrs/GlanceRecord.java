@@ -18,7 +18,17 @@ public class GlanceRecord extends BaseEntity{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date glanceDate;
+
+	@ManyToOne
+	@JoinColumn(name = "video_glance_record_id", foreignKey = @ForeignKey(name = "fk_video_glance_record_id"))
+	private Video video;
+
+	@ManyToOne
+	@JoinColumn(name = "user_glance_record_id", foreignKey = @ForeignKey(name = "fk_user_glance_record_id"))
+	private User user;
 
 	@Override
 	public Integer getId() {
@@ -36,5 +46,21 @@ public class GlanceRecord extends BaseEntity{
 
 	public void setGlanceDate(Date glanceDate) {
 		this.glanceDate = glanceDate;
+	}
+
+	public Video getVideo() {
+		return video;
+	}
+
+	public void setVideo(Video video) {
+		this.video = video;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 }

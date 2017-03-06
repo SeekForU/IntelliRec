@@ -11,7 +11,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "t_user_recommend")
-public class UserRecommend extends BaseEntity{
+public class UserRecommend extends BaseEntity {
 	/**
 	 * 代理主键
 	 */
@@ -20,7 +20,17 @@ public class UserRecommend extends BaseEntity{
 	private Integer id;
 	private boolean recommend;
 	private String reason;
+
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date recommendDate;
+
+	@ManyToOne
+	@JoinColumn(name = "video_userrecommend_id", foreignKey = @ForeignKey(name = "fk_video_userrecommend_id"))
+	private Video video;
+
+	@ManyToOne
+	@JoinColumn(name = "user_userrecommend_id", foreignKey = @ForeignKey(name = "fk_user_userrecommend_id"))
+	private User user;
 
 	@Override
 	public Integer getId() {
@@ -54,5 +64,21 @@ public class UserRecommend extends BaseEntity{
 
 	public void setRecommendDate(Date recommendDate) {
 		this.recommendDate = recommendDate;
+	}
+
+	public Video getVideo() {
+		return video;
+	}
+
+	public void setVideo(Video video) {
+		this.video = video;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 }

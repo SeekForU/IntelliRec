@@ -32,7 +32,7 @@ public class User extends BaseEntity{
 	/**
 	 * 用户的详细信息
 	 *
-	 * User 与 UserDetailInfo 为一对一关系，采用一对一单项关联
+	 * User 与 UserDetailInfo 为一对一关系，采用一对一单向关联
 	 */
 	@OneToOne
 	@JoinColumn(name = "user_detail_info_id", foreignKey = @ForeignKey(name = "fk_user_detail_info_id"))
@@ -41,67 +41,59 @@ public class User extends BaseEntity{
 	/**
 	 * 用户的收藏记录
 	 * <p>
-	 * User 与 CollectRecord 为一对多关系，采用一对多单项关联
+	 * User 与 CollectRecord 为一对多关系，采用一对多双向关联,由多的一方维护关联关系
 	 */
-	@OneToMany
-	@JoinColumn(name = "collect_record_id", foreignKey = @ForeignKey(name = "fk_collect_record_id"))
+	@OneToMany(mappedBy = "user")
 	private Set<CollectRecord> collectRecords = new HashSet<>();
 	/**
 	 * 用户的评论记录
 	 * <p>
-	 * User 与 CommentRecord 为一对多关系，采用一对多单项关联
+	 * User 与 CommentRecord 为一对多关系，采用一对多双向关联,由多的一方维护关联关系
 	 */
-	@OneToMany
-	@JoinColumn(name = "comment_record_id", foreignKey = @ForeignKey(name = "fk_comment_record_id"))
+	@OneToMany(mappedBy = "user")
 	private Set<CommentRecord> commentRecords = new HashSet<>();
 	/**
 	 * 用户的浏览记录
 	 * <p>
-	 * User 与 GlanceRecord 为一对多关系，采用一对多单项关联
+	 * User 与 GlanceRecord 为一对多关系，采用一对多双向关联,由多的一方维护关联关系
 	 */
-	@OneToMany
-	@JoinColumn(name = "glance_record_id", foreignKey = @ForeignKey(name = "fk_glance_record_id"))
+	@OneToMany(mappedBy = "user")
 	private Set<GlanceRecord> glanceRecords = new HashSet<>();
 	/**
 	 * 用户的评分记录
 	 * <p>
-	 * User 与 MarkRecord 为一对多关系，采用一对多单项关联
+	 * User 与 MarkRecord 为一对多关系，采用一对多双向关联,由多的一方维护关联关系
 	 */
-	@OneToMany
-	@JoinColumn(name = "mark_record_id", foreignKey = @ForeignKey(name = "fk_mark_record_id"))
+	@OneToMany(mappedBy = "user")
 	private Set<MarkRecord> markRecords = new HashSet<>();
 	/**
 	 * 用户的播放记录
 	 * <p>
-	 * User 与 PlayRecord 为一对多关系，采用一对多单项关联
+	 * User 与 PlayRecord 为一对多关系，采用一对多双向关联,由多的一方维护关联关系
 	 */
-	@OneToMany
-	@JoinColumn(name = "collect_record_id", foreignKey = @ForeignKey(name = "fk_play_record_id"))
+	@OneToMany(mappedBy = "user")
 	private Set<PlayRecord> playRecords = new HashSet<>();
 	/**
 	 * 用户的点赞记录
 	 * <p>
-	 * User 与 PraiseRecord 为一对多关系，采用一对多单项关联
+	 * User 与 PraiseRecord 为一对多关系，采用一对多双向关联,由多的一方维护关联关系
 	 */
-	@OneToMany
-	@JoinColumn(name = "praise_record_id", foreignKey = @ForeignKey(name = "fk_praise_record_id"))
+	@OneToMany(mappedBy = "user")
 	private Set<PraiseRecord> praiseRecords = new HashSet<>();
 	/**
 	 * 用户的搜索记录
 	 * <p>
-	 * User 与 SearchRecord 为一对多关系，采用一对多单项关联
+	 * User 与 SearchRecord 为一对多关系，采用一对多双向关联,由多的一方维护关联关系
 	 */
-	@OneToMany
-	@JoinColumn(name = "search_record_id", foreignKey = @ForeignKey(name = "fk_search_record_id"))
+	@OneToMany(mappedBy = "user")
 	private Set<SearchRecord> searchRecords = new HashSet<>();
 
 	/**
 	 * 用户的推荐
 	 * <p>
-	 * User 与 UserRecommend 为一对多关系，采用一对多单项关联
+	 * User 与 UserRecommend 为一对多关系，采用一对多双向关联,由多的一方维护关联关系
 	 */
-	@OneToMany
-	@JoinColumn(name = "user_recommend_id", foreignKey = @ForeignKey(name = "fk_user_recommend_id"))
+	@OneToMany(mappedBy = "user")
 	private Set<UserRecommend> userRecommends = new HashSet<>();
 
 	@Override

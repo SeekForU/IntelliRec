@@ -19,7 +19,17 @@ public class CommentRecord extends BaseEntity{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	private String comment;
+
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date commentDate;
+
+	@ManyToOne
+	@JoinColumn(name = "video_comment_record_id", foreignKey = @ForeignKey(name = "fk_video_comment_record_id"))
+	private Video video;
+
+	@ManyToOne
+	@JoinColumn(name = "user_comment_record_id", foreignKey = @ForeignKey(name = "fk_user_comment_record_id"))
+	private User user;
 
 	@Override
 	public Integer getId() {
@@ -45,5 +55,21 @@ public class CommentRecord extends BaseEntity{
 
 	public void setCommentDate(Date commentDate) {
 		this.commentDate = commentDate;
+	}
+
+	public Video getVideo() {
+		return video;
+	}
+
+	public void setVideo(Video video) {
+		this.video = video;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 }

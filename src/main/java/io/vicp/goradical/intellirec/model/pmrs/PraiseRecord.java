@@ -18,8 +18,18 @@ public class PraiseRecord extends BaseEntity{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	private boolean like;
-	private Date likeDate;
+	private boolean praise;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date praiseDate;
+
+	@ManyToOne
+	@JoinColumn(name = "video_praise_record_id", foreignKey = @ForeignKey(name = "fk_video_praise_record_id"))
+	private Video video;
+
+	@ManyToOne
+	@JoinColumn(name = "user_praise_record_id", foreignKey = @ForeignKey(name = "fk_user_praise_record_id"))
+	private User user;
 
 	@Override
 	public Integer getId() {
@@ -31,19 +41,35 @@ public class PraiseRecord extends BaseEntity{
 		this.id = id;
 	}
 
-	public boolean isLike() {
-		return like;
+	public boolean isPraise() {
+		return praise;
 	}
 
-	public void setLike(boolean like) {
-		this.like = like;
+	public void setPraise(boolean like) {
+		this.praise = like;
 	}
 
-	public Date getLikeDate() {
-		return likeDate;
+	public Date getPraiseDate() {
+		return praiseDate;
 	}
 
-	public void setLikeDate(Date likeDate) {
-		this.likeDate = likeDate;
+	public void setPraiseDate(Date praiseDate) {
+		this.praiseDate = praiseDate;
+	}
+
+	public Video getVideo() {
+		return video;
+	}
+
+	public void setVideo(Video video) {
+		this.video = video;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 }

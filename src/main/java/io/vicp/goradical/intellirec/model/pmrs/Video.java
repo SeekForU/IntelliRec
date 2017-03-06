@@ -142,59 +142,52 @@ public class Video extends BaseEntity {
 	/**
 	 * 视频的收藏记录
 	 * <p>
-	 * Video 与 CollectRecord 为一对多关系，采用一对多单项关联
+	 * Video 与 CollectRecord 为一对多关系，采用一对多双向关联,由多的一方维护关联关系
 	 */
-	@OneToMany
-	@JoinColumn(name = "collect_record_id", foreignKey = @ForeignKey(name = "fk_collect_record_id"))
+	@OneToMany(mappedBy = "video")
 	private Set<CollectRecord> collectRecords = new HashSet<>();
 	/**
 	 * 视频的评论记录
 	 * <p>
-	 * Video 与 CommentRecord 为一对多关系，采用一对多单项关联
+	 * Video 与 CommentRecord 为一对多关系，采用一对多双向关联,由多的一方维护关联关系
 	 */
-	@OneToMany
-	@JoinColumn(name = "comment_record_id", foreignKey = @ForeignKey(name = "fk_comment_record_id"))
+	@OneToMany(mappedBy = "video")
 	private Set<CommentRecord> commentRecords = new HashSet<>();
 	/**
 	 * 视频的浏览记录
 	 * <p>
-	 * Video 与 GlanceRecord 为一对多关系，采用一对多单项关联
+	 * Video 与 GlanceRecord 为一对多关系，采用一对多双向关联,由多的一方维护关联关系
 	 */
-	@OneToMany
-	@JoinColumn(name = "glance_record_id", foreignKey = @ForeignKey(name = "fk_glance_record_id"))
+	@OneToMany(mappedBy = "video")
 	private Set<GlanceRecord> glanceRecords = new HashSet<>();
 	/**
 	 * 视频的评分记录
 	 * <p>
-	 * Video 与 MarkRecord 为一对多关系，采用一对多单项关联
+	 * Video 与 MarkRecord 为一对多关系，采用一对多双向关联,由多的一方维护关联关系
 	 */
-	@OneToMany
-	@JoinColumn(name = "mark_record_id", foreignKey = @ForeignKey(name = "fk_mark_record_id"))
+	@OneToMany(mappedBy = "video")
 	private Set<MarkRecord> markRecords = new HashSet<>();
 	/**
 	 * 视频的播放记录
 	 * <p>
-	 * Video 与 PlayRecord 为一对多关系，采用一对多单项关联
+	 * Video 与 PlayRecord 为一对多关系，采用一对多双向关联,由多的一方维护关联关系
 	 */
-	@OneToMany
-	@JoinColumn(name = "collect_record_id", foreignKey = @ForeignKey(name = "fk_play_record_id"))
+	@OneToMany(mappedBy = "video")
 	private Set<PlayRecord> playRecords = new HashSet<>();
 	/**
 	 * 视频的点赞记录
 	 * <p>
-	 * Video 与 PraiseRecord 为一对多关系，采用一对多单项关联
+	 * Video 与 PraiseRecord 为一对多关系，采用一对多双向关联,由多的一方维护关联关系
 	 */
-	@OneToMany
-	@JoinColumn(name = "praise_record_id", foreignKey = @ForeignKey(name = "fk_praise_record_id"))
+	@OneToMany(mappedBy = "video")
 	private Set<PraiseRecord> praiseRecords = new HashSet<>();
 
 	/**
 	 * 视频被用户推荐
 	 * <p>
-	 * Video 与 UserRecommend 为一对多关系，采用一对多单项关联
+	 * Video 与 UserRecommend 为一对多关系，采用一对多双向关联,由多的一方维护关联关系
 	 */
-	@OneToMany
-	@JoinColumn(name = "user_recommend_id", foreignKey = @ForeignKey(name = "fk_user_recommend_id"))
+	@OneToMany(mappedBy = "video")
 	private Set<UserRecommend> userRecommends = new HashSet<>();
 
 	@Override

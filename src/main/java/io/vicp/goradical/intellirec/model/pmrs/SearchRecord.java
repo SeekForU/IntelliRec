@@ -22,6 +22,8 @@ public class SearchRecord extends BaseEntity {
 	private Integer id;
 	private String searchKeyWords;
 	private Integer searchType;
+
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date searchDate;
 
 	/**
@@ -29,9 +31,12 @@ public class SearchRecord extends BaseEntity {
 	 *
 	 * SearchRecord 与 SearchResult 为一对多关系，采用一对多关联映射
 	 */
-	@OneToMany
-	@JoinColumn(name = "search_result_id", foreignKey = @ForeignKey(name = "fk_search_result_id"))
+	@OneToMany(mappedBy = "searchRecord")
 	private Set<SearchResult> searchResults = new HashSet<>();
+
+	@ManyToOne
+	@JoinColumn(name = "search_record_id", foreignKey = @ForeignKey(name = "fk_search_record_id"))
+	private User user;
 
 	@Override
 	public Integer getId() {
@@ -41,5 +46,45 @@ public class SearchRecord extends BaseEntity {
 	@Override
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getSearchKeyWords() {
+		return searchKeyWords;
+	}
+
+	public void setSearchKeyWords(String searchKeyWords) {
+		this.searchKeyWords = searchKeyWords;
+	}
+
+	public Integer getSearchType() {
+		return searchType;
+	}
+
+	public void setSearchType(Integer searchType) {
+		this.searchType = searchType;
+	}
+
+	public Date getSearchDate() {
+		return searchDate;
+	}
+
+	public void setSearchDate(Date searchDate) {
+		this.searchDate = searchDate;
+	}
+
+	public Set<SearchResult> getSearchResults() {
+		return searchResults;
+	}
+
+	public void setSearchResults(Set<SearchResult> searchResults) {
+		this.searchResults = searchResults;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 }

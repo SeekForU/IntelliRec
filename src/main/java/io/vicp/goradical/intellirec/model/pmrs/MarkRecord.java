@@ -15,7 +15,17 @@ public class MarkRecord extends BaseEntity {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	private Integer mark;
+
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date markDate;
+
+	@ManyToOne
+	@JoinColumn(name = "video_mark_record_id", foreignKey = @ForeignKey(name = "fk_video_mark_record_id"))
+	private Video video;
+
+	@ManyToOne
+	@JoinColumn(name = "user_mark_record_id", foreignKey = @ForeignKey(name = "fk_user_mark_record_id"))
+	private User user;
 
 	@Override
 	public Integer getId() {
@@ -41,5 +51,21 @@ public class MarkRecord extends BaseEntity {
 
 	public void setMarkDate(Date markDate) {
 		this.markDate = markDate;
+	}
+
+	public Video getVideo() {
+		return video;
+	}
+
+	public void setVideo(Video video) {
+		this.video = video;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 }
