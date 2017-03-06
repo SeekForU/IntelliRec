@@ -43,4 +43,52 @@ public class UserDetailInfo extends BaseEntity{
 		this.constellation = constellation;
 		this.personalizedSignatures = personalizedSignatures;
 	}
+
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getRegion() {
+		return region;
+	}
+
+	public void setRegion(String region) {
+		this.region = region;
+	}
+
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
+
+	public String getConstellation() {
+		return constellation;
+	}
+
+	public void setConstellation(String constellation) {
+		this.constellation = constellation;
+	}
+
+	public String getPersonalizedSignatures() {
+		return personalizedSignatures;
+	}
+
+	public void setPersonalizedSignatures(String personalizedSignatures) {
+		this.personalizedSignatures = personalizedSignatures;
+	}
 }
