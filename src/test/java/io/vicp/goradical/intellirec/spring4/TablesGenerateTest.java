@@ -35,4 +35,5 @@ public class TablesGenerateTest {
 	public void tablesGenerator() throws Exception {
 		LOG.info("tables generate successfully.........");
 	}
+
 }
