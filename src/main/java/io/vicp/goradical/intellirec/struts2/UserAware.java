@@ -1,7 +1,7 @@
 package io.vicp.goradical.intellirec.struts2;
 
 
-import io.vicp.goradical.intellirec.model.user.User;
+import io.vicp.goradical.intellirec.model.pmrs.User;
 
 /**
  * Created by Kenny on 2017/3/3.
