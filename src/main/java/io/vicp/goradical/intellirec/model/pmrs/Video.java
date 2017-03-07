@@ -2,6 +2,7 @@ package io.vicp.goradical.intellirec.model.pmrs;
 
 
 import io.vicp.goradical.intellirec.model.BaseEntity;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -20,7 +21,9 @@ public class Video extends BaseEntity {
 	 * 代理主键
 	 */
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(generator = "native")
+	@GenericGenerator(name = "native", strategy = "native")
+	@Column(columnDefinition = "int(11) unsigned")
 	private Integer id;
 
 	/**
@@ -54,12 +57,13 @@ public class Video extends BaseEntity {
 	/**
 	 * 视频别名
 	 */
+	@Column(length = 2048)
 	private String alias;
 
 	/**
 	 * 视频简介
 	 */
-	@Column(length = 512)
+	@Column(length = 4096)
 	private String summary;
 
 	/**
@@ -77,6 +81,7 @@ public class Video extends BaseEntity {
 	/**
 	 * 下载链接
 	 */
+	@org.hibernate.annotations.Type(type = "text")
 	@Column(name = "download_url")
 	private String downloadUrl;
 
@@ -88,7 +93,7 @@ public class Video extends BaseEntity {
 	 * Video 与 Category 为一对一关系，采用单向外键关联映射
 	 */
 	@OneToOne
-	@JoinColumn(name = "category_id", foreignKey = @ForeignKey(name = "fk_category_id"))
+	@JoinColumn(name = "video_category_id", foreignKey = @ForeignKey(name = "fk_video_category_id"))
 	private Category category;
 
 	/**
@@ -96,7 +101,7 @@ public class Video extends BaseEntity {
 	 * Video 与 ActionInfo 为一对一关系，采用单向外键关联映射
 	 */
 	@OneToOne
-	@JoinColumn(name = "action_info_id", foreignKey = @ForeignKey(name = "fk_action_info_id"))
+	@JoinColumn(name = "video_actioninfo_id", foreignKey = @ForeignKey(name = "fk_video_actioninfo_id"))
 	private ActionInfo actionInfo;
 
 	/**

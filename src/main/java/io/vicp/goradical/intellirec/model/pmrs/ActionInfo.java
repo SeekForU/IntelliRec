@@ -1,6 +1,7 @@
 package io.vicp.goradical.intellirec.model.pmrs;
 
 import io.vicp.goradical.intellirec.model.BaseEntity;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
@@ -10,25 +11,68 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "t_action_info")
-public class ActionInfo extends BaseEntity{
+public class ActionInfo extends BaseEntity {
 	/**
 	 * 代理主键
 	 */
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(generator = "native")
+	@GenericGenerator(name = "native", strategy = "native")
+	@Column(columnDefinition = "int(11) unsigned")
 	private Integer id;
 
 	/**
-	 * 相关的视频对象
+	 * 总的播放量
 	 */
+	@Column(name = "total_play")
 	private Integer totalPlay;
+
+	/**
+	 * 总的浏览量
+	 */
+	@Column(name = "total_glance")
 	private Integer totalGlance;
+
+	/**
+	 * 总的评论量
+	 */
+	@Column(name = "total_comment")
 	private Integer totalComment;
-	private Integer totalMark;
+
+	/**
+	 * 平均评分
+	 */
+	@Column(name = "avg_score", columnDefinition = "decimal(10, 5)")
+	private Double avgScore;
+
+	/**
+	 * 总的点赞数量
+	 */
+	@Column(name = "total_like")
 	private Integer totalLike;
+
+	/**
+	 * 总的踩数量
+	 */
+	@Column(name = "total_dislike")
 	private Integer totalDislike;
+
+	/**
+	 * 总的收藏数量
+	 */
+	@Column(name = "total_collect")
 	private Integer totalCollect;
+
+	/**
+	 * 总的搜索数量
+	 */
+	@Column(name = "total_search")
 	private Integer totalSearch;
+
+	/**
+	 * 总的推荐数量
+	 */
+	@Column(name = "total_recommend")
 	private Integer totalRecommend;
 
 	@Override
@@ -65,12 +109,12 @@ public class ActionInfo extends BaseEntity{
 		this.totalComment = totalComment;
 	}
 
-	public Integer getTotalMark() {
-		return totalMark;
+	public Double getAvgScore() {
+		return avgScore;
 	}
 
-	public void setTotalMark(Integer totalMark) {
-		this.totalMark = totalMark;
+	public void setAvgScore(Double totalMark) {
+		this.avgScore = totalMark;
 	}
 
 	public Integer getTotalLike() {

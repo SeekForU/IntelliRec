@@ -1,6 +1,7 @@
 package io.vicp.goradical.intellirec.model.pmrs;
 
 import io.vicp.goradical.intellirec.model.BaseEntity;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
@@ -15,9 +16,19 @@ public class Category extends BaseEntity{
 	 * 代理主键
 	 */
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(generator = "native")
+	@GenericGenerator(name = "native", strategy = "native")
+	@Column(columnDefinition = "int(11) unsigned")
 	private Integer id;
+
+	/**
+	 * 分类名称
+	 */
 	private String category;
+
+	/**
+	 * 分类描述
+	 */
 	private String description;
 
 	@Override

@@ -1,6 +1,7 @@
 package io.vicp.goradical.intellirec.model.pmrs;
 
 import io.vicp.goradical.intellirec.model.BaseEntity;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -17,11 +18,25 @@ public class Type extends BaseEntity{
 	 * 代理主键
 	 */
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(generator = "native")
+	@GenericGenerator(name = "native", strategy = "native")
+	@Column(columnDefinition = "int(11) unsigned")
 	private Integer id;
+
+	/**
+	 * 类型名
+	 */
+	@Column(name = "type_name")
 	private String typeName;
+
+	/**
+	 * 描述
+	 */
 	private String description;
 
+	/**
+	 * Type 与 Video 之间为多对多关系, 采用双向多对多关联映射,由 Video 一方来维护关联关系
+	 */
 	@ManyToMany(mappedBy = "types")
 	private Set<Video> videos = new HashSet<>();
 

@@ -1,6 +1,7 @@
 package io.vicp.goradical.intellirec.model.pmrs;
 
 import io.vicp.goradical.intellirec.model.BaseEntity;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -18,12 +19,25 @@ public class SearchRecord extends BaseEntity {
 	 * 代理主键
 	 */
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(generator = "native")
+	@GenericGenerator(name = "native", strategy = "native")
+	@Column(columnDefinition = "int(11) unsigned")
 	private Integer id;
+
+	/**
+	 * 搜索关键字
+	 */
+	@Column(name = "search_key_words")
 	private String searchKeyWords;
+
+	/**
+	 * 搜索类型
+	 */
+	@Column(name = "search_type")
 	private Integer searchType;
 
 	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "search_date")
 	private Date searchDate;
 
 	/**
@@ -34,8 +48,11 @@ public class SearchRecord extends BaseEntity {
 	@OneToMany(mappedBy = "searchRecord")
 	private Set<SearchResult> searchResults = new HashSet<>();
 
+	/**
+	 * SearchRecord 与 User 多对一关系，采用多对一双向关联映射， 由多的一方 SearchRecord 维护关联关系
+	 */
 	@ManyToOne
-	@JoinColumn(name = "search_record_id", foreignKey = @ForeignKey(name = "fk_search_record_id"))
+	@JoinColumn(name = "user_searchrecord_id", foreignKey = @ForeignKey(name = "fk_user_searchrecord_id"))
 	private User user;
 
 	@Override

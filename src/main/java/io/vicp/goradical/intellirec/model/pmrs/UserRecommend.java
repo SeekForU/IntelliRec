@@ -1,6 +1,7 @@
 package io.vicp.goradical.intellirec.model.pmrs;
 
 import io.vicp.goradical.intellirec.model.BaseEntity;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -16,18 +17,37 @@ public class UserRecommend extends BaseEntity {
 	 * 代理主键
 	 */
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(generator = "native")
+	@GenericGenerator(name = "native", strategy = "native")
+	@Column(columnDefinition = "int(11) unsigned")
 	private Integer id;
+
+	/**
+	 * 推荐 true 为推荐，false 为不推荐
+	 */
 	private boolean recommend;
+
+	/**
+	 * 理由
+	 */
 	private String reason;
 
+	/**
+	 * 时间
+	 */
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date recommendDate;
 
+	/**
+	 * UserRecommend 与 Video 之间为多对一关系，采用双向多对一关联映射，由多的一方 UserRecommend 来维护关联关系
+	 */
 	@ManyToOne
 	@JoinColumn(name = "video_userrecommend_id", foreignKey = @ForeignKey(name = "fk_video_userrecommend_id"))
 	private Video video;
 
+	/**
+	 * UserRecommend 与 User 之间为多对一关系，采用双向多对一关联映射，由多的一方 UserRecommend 来维护关联关系
+	 */
 	@ManyToOne
 	@JoinColumn(name = "user_userrecommend_id", foreignKey = @ForeignKey(name = "fk_user_userrecommend_id"))
 	private User user;

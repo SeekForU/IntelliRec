@@ -1,6 +1,7 @@
 package io.vicp.goradical.intellirec.model.pmrs;
 
 import io.vicp.goradical.intellirec.model.BaseEntity;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -16,13 +17,42 @@ public class UserDetailInfo extends BaseEntity{
 	 * 代理主键
 	 */
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(generator = "native")
+	@GenericGenerator(name = "native", strategy = "native")
+	@Column(columnDefinition = "int(11) unsigned")
 	private Integer id;
+
+	/**
+	 * 昵称
+	 */
+	@Column(name = "nick_name")
 	private String nickName;
+
+	/**
+	 * 性别
+	 */
 	private String gender;
+
+	/**
+	 * 地区
+	 */
 	private String region;
+
+	/**
+	 * 生日
+	 */
+	@Temporal(TemporalType.DATE)
 	private Date birthday;
+
+	/**
+	 * 星座
+	 */
 	private String constellation;
+
+	/**
+	 * 个性签名
+	 */
+	@Column(name = "personalized_signatures")
 	private String personalizedSignatures;
 
 	@Override
@@ -33,15 +63,6 @@ public class UserDetailInfo extends BaseEntity{
 	@Override
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public UserDetailInfo(String nickName, String gender, String region, Date birthday, String constellation, String personalizedSignatures) {
-		this.nickName = nickName;
-		this.gender = gender;
-		this.region = region;
-		this.birthday = birthday;
-		this.constellation = constellation;
-		this.personalizedSignatures = personalizedSignatures;
 	}
 
 	public String getNickName() {

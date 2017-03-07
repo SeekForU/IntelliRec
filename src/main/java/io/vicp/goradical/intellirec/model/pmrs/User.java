@@ -1,6 +1,7 @@
 package io.vicp.goradical.intellirec.model.pmrs;
 
 import io.vicp.goradical.intellirec.model.BaseEntity;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -17,16 +18,55 @@ public class User extends BaseEntity{
 	 * 代理主键
 	 */
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(generator = "native")
+	@GenericGenerator(name = "native", strategy = "native")
+	@Column(columnDefinition = "int(11) unsigned")
 	private Integer id;
 
+	/**
+	 * 用户Id,此 数据是抓取的优酷站点的,此Id是优酷站点的用户Id
+	 */
+	@Column(name = "user_id")
 	private Integer userId;
+
+	/**
+	 * 用户名
+	 */
+	@Column(name = "user_name")
 	private String userName;
+
+	/**
+	 * email
+	 */
 	private String email;
+
+	/**
+	 * 密码
+	 */
 	private String password;
+
+	/**
+	 * 用户级别
+	 */
+	@Column(name = "user_level")
 	private Integer userLevel;
+
+	/**
+	 * 用户小头像地址链接
+	 */
+	@Column(name = "head_photo_small")
 	private String headPhotoSmall;
+
+	/**
+	 * 用户中号头像地址链接
+	 */
+	@Column(name = "head_photo_middle")
 	private String headPhotoMiddle;
+
+	/**
+	 * 用户大头像地址链接
+	 */
+	@Column(name = "head_photo_large")
 	private String headPhotoLarge;
 
 	/**

@@ -1,5 +1,7 @@
 package io.vicp.goradical.intellirec.model.pmrs;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,14 +17,23 @@ public class SearchResult {
 	 * 代理主键
 	 */
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(generator = "native")
+	@GenericGenerator(name = "native", strategy = "native")
+	@Column(columnDefinition = "int(11) unsigned")
 	private Integer id;
+
+	/**
+	 * SearchResult 与 SearchRecord 为多对一关系，采用双向多对一关联映射，由多的一方 SearchResult 维护关联关系
+	 */
 	@ManyToOne
-	@JoinColumn(name = "search_record__id", foreignKey = @ForeignKey(name = "fk_search_record_id"))
+	@JoinColumn(name = "searchresult_searchrecord__id", foreignKey = @ForeignKey(name = "fk_searchresult_searchrecord_id"))
 	private SearchRecord searchRecord;
 
+	/**
+	 * SearchResult 与 Video 为一对多关系，采用单向一对多关联映射
+	 */
 	@OneToMany
-	@JoinColumn(name = "search_result_id", foreignKey = @ForeignKey(name = "fk_search_result_id"))
+	@JoinColumn(name = "video_searchresult_id", foreignKey = @ForeignKey(name = "fk_video_searchresult_id"))
 	private Set<Video> videos = new HashSet<>();
 
 	public Integer getId() {
