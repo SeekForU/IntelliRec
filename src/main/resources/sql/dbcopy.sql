@@ -1,5 +1,7 @@
 # find duplicate
 # select file_info_id, file_id, file_name, count(*) count from pmrs.t_file_info group by file_id having count > 1 order by file_info_id;
+# find duplicate
+# select file_info_id, file_id, file_name from t_file_info where file_id =
 SET FOREIGN_KEY_CHECKS=0;
 # category copy
 insert into intelli_rec_1.t_category (category, description) select category, description from pmrs.t_category;
@@ -12,7 +14,7 @@ insert into intelli_rec_1.t_nation (nation_name, description) select nation_name
 # type copy
 insert into intelli_rec_1.t_type (type_name, description) select type_name, `desc` from pmrs.t_type;
 # video copy
-insert into intelli_rec_1.t_video (alias, cover, duration, published, summary, video_id, download_url, video_name, youku_detail_url, youku_play_url, video_category_id, video_actioninfo_id) select alias, cover, duration, published, summary, file_id, download_url, file_name, youku_detail_url, youku_play_url, category, action_info  from pmrs.t_file_info;
+insert into intelli_rec_1.t_video (old_id, alias, cover, duration, published, summary, video_id, download_url, video_name, youku_detail_url, youku_play_url, video_category_id, video_actioninfo_id) select file_info_id, alias, cover, duration, published, summary, file_id, download_url, file_name, youku_detail_url, youku_play_url, category, action_info from pmrs.t_file_info;
 # video_actor copy
 insert into intelli_rec_1.t_video_actor_link (video_id, actor_id) select file_id, actor_id from pmrs.t_file_actor;
 # video_director copy
