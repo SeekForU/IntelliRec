@@ -24,7 +24,7 @@ public class CommentRecordDaoImplTest extends AbstractTransactionalJUnit4SpringC
 
 	@Test
 	public void countTotalPlay() throws Exception {
-		for (int i = 1; i < 3000 ; i++) {
+		for (int i = 1; i < 5 ; i++) {
 			long count = crd.countTotalPlayWithVideoId(i);
 			LOG.info(count);
 		}
